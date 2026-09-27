@@ -10,19 +10,19 @@ int main() {
 	// Inicializacion del arreglo 3D (Cubo)
 	int cubo[3][N][N] = {
 		{
-			{1, 2, 3},
-		    {4, 5, 6},
-			{7, 8, 9}
+			{0, 1, 2},
+		    {1, 2, 0},
+			{2, 0, 1}
 	},
 	{
-		{10, 11, 12},
-		{13, 14, 15},
-		{16, 17, 18}
+		{1, 2, 0},
+	    {2, 0, 1},
+		{0, 1, 2}
 	},
 		{
-			{19, 20, 21},
-	    	{22, 23, 24},
-			{25, 26, 27}
+			{2, 0, 1},
+		    {0, 1, 2},
+			{1, 2, 0}
 		}
 	};
 	
@@ -44,17 +44,16 @@ int main() {
 	cout << "\n--- BLOQUES EN PROFUNDIDAD ---" << endl;
 	
 	// Completar:
-	for(int (*fila)[n] = cubo[0]; fila < cubo[2] ; fila++){
+	for(int (*fila)[n] = cubo[0]; fila < cubo[0] + n; fila++){
 		
-		for(int *columna = *fila; columna < *fila + n ; columna++){
+		for(int *columna = *fila; columna < *fila + n; columna++){
 			
-			for(int (*cara)[n][n] = cubo; *cara < cubo[3]; cara++){
-				
-				cout<< *columna + n*n<<" ";
+			for(int *profundidad = columna; profundidad < **cubo + (N*N*N); profundidad += N*N){
+				cout << *profundidad << " ";
 			}
+			cout << endl; // un bloque (una línea) por cada par fila-columna
 		}
-		cout<<endl;
-	};
+	}
 	
 	
 	return 0;
